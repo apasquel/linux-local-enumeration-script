@@ -7,7 +7,7 @@ yellow=$(tput setaf 3)   # Warnings/Information
 blue=$(tput setaf 4)     # Heading
 bold=$(tput bold  setaf 7)     # Highlight
 reset=$(tput setaf 7)       # Norma
-#printf "Author: $blue @Arr0way $reset \n"
+#Author: $blue @Arr0way 
 #Ripped off by Austin Pasquel. 
 sleep 1.2
 printf "\n"
@@ -47,6 +47,8 @@ printf "\n"
 printf "$reset"
 
 /bin/uname -ar
+printf "\n"
+/usr/bin/cat /proc/version
 
 printf "\n"
 printf "$blue"
@@ -347,6 +349,7 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n$reset"
 
 /usr/bin/find / -perm -4000 -o -perm -2000 -print 2>/dev/null
+printf "\n"
 
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#' 
@@ -405,6 +408,24 @@ printf "$reset"
 #printf "$reset"
 
 #/usr/bin/find / -user $(whoami) 2>/dev/null
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Hidden Files"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+find / -name ".*" -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -al {} \; 2>/dev/null`
+printf "\n"
 
 printf "\n"
 printf "$blue"
@@ -474,6 +495,8 @@ printf "\n"
 printf "$reset"
 
 /usr/bin/lastb
+printf "\n"
+/usr/bin/lastlog
 
 printf "\n"
 printf "$blue"
@@ -512,6 +535,28 @@ printf "\n"
 printf "$reset"
 
 chkconfig --list | grep $(runlevel | awk '{ print $2}'):on
+printf "\n"
+
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Security Status"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/sbin/sestatus 2>/dev/null
+printf "\n"
+/usr/bin/sudo -V 2>/dev/null
+printf "\n"
 
 printf "\n"
 printf "$blue"
@@ -529,6 +574,7 @@ printf "\n"
 printf "$reset"
 
 ls /etc/init.d/
+printf "\n"
 
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
