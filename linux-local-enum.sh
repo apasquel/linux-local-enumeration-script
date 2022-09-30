@@ -9,12 +9,9 @@ bold=$(tput bold  setaf 7)     # Highlight
 reset=$(tput setaf 7)       # Norma
 #printf "Author: $blue @Arr0way $reset \n"
 #Ripped off by Austin Pasquel. 
-
 sleep 1.2
-
 printf "\n"
 printf "\n"
-
 sleep 0.2
 
 # Logs output to enum.log
@@ -57,6 +54,23 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
+printf "$blue## $red Installed Kernel Modules"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/sbin/lsmod
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
 printf "$blue## $red Date/Time Info"
 printf "\n"
 printf "$blue"
@@ -74,7 +88,7 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
-printf "$blue## $red Network Info"
+printf "$blue## $red Current Network Configuration and Connections"
 printf "\n"
 printf "$blue"
 printf "##"
@@ -82,7 +96,6 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-
 
 /bin/cat /etc/sysconfig/network
 printf "\n"
@@ -94,6 +107,45 @@ printf "\n"
 printf "\n"
 /sbin/ifconfig -a
 printf "\n"
+/usr/bin/netstat -anp
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Network Routing Tables"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/netstat -rn
+printf "\n"
+/usr/sbin/route
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Processes Running"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/bin/ps -ef 
 
 printf "\n"
 printf "$blue"
@@ -109,6 +161,7 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
+
 /bin/df -h
 
 printf "\n"
@@ -125,8 +178,9 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-/bin/df -h
 
+/bin/df -h
+printf "\n"
 mount | column -t
 
 printf "\n"
@@ -135,7 +189,7 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
-printf "$blue## $red /etc/fstab File Contents"
+printf "$blue## $red Current Open Files"
 printf "\n"
 printf "$blue"
 printf "##"
@@ -143,8 +197,25 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-/bin/cat /etc/fstab
 
+/usr/bin/lsof -V
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red /etc/fstab File System Table (fstab) Contents"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/bin/cat /etc/fstab
 
 printf "\n"
 printf "$blue"
@@ -169,7 +240,7 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
-printf "$blue## $red /etc/passwd File Contents"
+printf "$blue## $red /etc/shadow File Contents"
 printf "\n"
 printf "$blue"
 printf "##"
@@ -197,7 +268,6 @@ printf "$reset"
 
 /bin/cat /etc/group
 
-
 printf "\n"
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
@@ -212,8 +282,8 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-/bin/cat /etc/sudoers
 
+/bin/cat /etc/sudoers
 
 printf "\n"
 printf "$blue"
@@ -263,8 +333,8 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-/usr/bin/find / -perm -222 -type d 2>/dev/null  
 
+/usr/bin/find / -perm -222 -type d 2>/dev/null  
 
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#' 
@@ -302,7 +372,6 @@ printf "\n$reset"
 
 /usr/bin/find / -nogroup -print 2>/dev/null
 
-
 printf "\n"
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
@@ -320,23 +389,22 @@ printf "$reset"
 
 /usr/bin/find / -type f -perm 0777 2>/dev/null
 
-printf "\n"
-printf "$blue"
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
-printf "##"
-printf "\n"
-printf "$red"
-printf "$blue## $red Files Owned by Current User"
-printf "\n"
-printf "$blue"
-printf "##"
-printf "\n"
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
-printf "\n"
-printf "$reset"
+#printf "\n"
+#printf "$blue"
+#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+#printf "##"
+#printf "\n"
+#printf "$red"
+#printf "$blue## $red Files Owned by Current User"
+#printf "\n"
+#printf "$blue"
+#printf "##"
+#printf "\n"
+#printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+#printf "\n"
+#printf "$reset"
 
-/usr/bin/find / -user $(whoami) 2>/dev/null
-
+#/usr/bin/find / -user $(whoami) 2>/dev/null
 
 printf "\n"
 printf "$blue"
@@ -352,9 +420,9 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
+
 /bin/ls -ahlR /home/
 /bin/ls -ahlR /root/ 
-
 
 printf "\n"
 printf "$blue"
@@ -372,7 +440,6 @@ printf "\n"
 printf "$reset"
 
 /usr/bin/w
-
 
 printf "\n"
 printf "$blue"
@@ -397,7 +464,7 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
-printf "$blue## $red Processes Running as root"
+printf "$blue## $red Last Failed Logged on Users"
 printf "\n"
 printf "$blue"
 printf "##"
@@ -405,8 +472,8 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-/bin/ps -ef | /bin/grep "[r]oot"
 
+/usr/bin/lastb
 
 printf "\n"
 printf "$blue"
@@ -422,10 +489,6 @@ printf "\n"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
-
-# Enumarate CentOS / Ubuntu Boxes 
-# This is not a great way of ID'ing a box, but I'm being lazy
-
 
 printf "\n"
 /usr/bin/dpkg -l
@@ -465,7 +528,6 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
 
-
 ls /etc/init.d/
 
 printf "$blue"
@@ -473,8 +535,5 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "$reset"
 
 printf "\n More Linux enumeration commands can be found at: $blue https://highon.coffee/docs/linux-commands  \n"
-
-printf "\n $red So long, and thanks for all the fish... \n $reset"
-printf "\n"
 # outputs to enum.log in current dir
 ) 2>&1 | /usr/bin/tee enum.log
