@@ -1,5 +1,6 @@
 # Linux Local Enumeration Script
 
+
 Check out the post on [Linux Local Enumeration Script](https://highon.coffee/blog/linux-local-enumeration-script) on [HighOn.Coffee](https://highon.coffee)  
 
 The script performs basic linux local enumeration, a first step in the local privilege escalation process.
