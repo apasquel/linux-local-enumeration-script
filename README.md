@@ -1,11 +1,9 @@
 # Linux Local Enumeration Script
 
+Originally from [HighOn.Coffee](https://highon.coffee)  
+Modified by Austin Pasquel
 
-Check out the post on [Linux Local Enumeration Script](https://highon.coffee/blog/linux-local-enumeration-script) on [HighOn.Coffee](https://highon.coffee)  
-
-The script performs basic linux local enumeration, a first step in the local privilege escalation process.
-
-![linux local priv esc](http://i.imgur.com/cHvO7Rt.gif)
+The script performs linux enumeration to determine if the box was compromised.  
 
 Copy script to target and execute it: 
 
@@ -16,5 +14,3 @@ chmod linux-local-enum.sh
 ```
 
 The script logs all output to file enum.log, which is created in the script root directory. 
-
-Enjoy. 
