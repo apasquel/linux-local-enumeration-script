@@ -7,43 +7,8 @@ yellow=$(tput setaf 3)   # Warnings/Information
 blue=$(tput setaf 4)     # Heading
 bold=$(tput bold  setaf 7)     # Highlight
 reset=$(tput setaf 7)       # Norma
-
-# Quick Linux Local Enumeration Script 
-# v1.0
-
-cat << "EOF"
-                       .
-                        `:.
-                          `:.
-                  .:'     ,::
-                 .:'      ;:'
-                 ::      ;:'
-                  :    .:'
-                   `.  :.
-          _________________________
-         :                         :
-     ,---:      HighOn.Coffee      :
-    : ,'"`:                       :'
-    `.`.  `:                     :'
-      `.`-._:                   :
-        `-.__`.               ,' 
-    ,--------`"`-------------'--------.
-     `"--.__                   __.--"'
-            `""-------------""'
-
-EOF
-
-printf "URL: $green http://highon.coffee $reset \n"
-
-printf "Version: $yellow 1.0 $reset \n"
-
-printf "Twitter: $blue @HighOn_Coffee $reset \n"
-printf "Author: $blue @Arr0way $reset \n"
-
-printf "Disclaimer: \n"
-printf "\n"
-printf "$red HighOn.Coffee is not responsible for misuse or for any damage that you may cause! \n
- You agree that you use this software at your own risk. $reset  \n"
+#printf "Author: $blue @Arr0way $reset \n"
+#Ripped off by Austin Pasquel. 
 
 sleep 1.2
 
@@ -92,6 +57,23 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
+printf "$blue## $red Date/Time Info"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/date
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
 printf "$blue## $red Network Info"
 printf "\n"
 printf "$blue"
@@ -110,7 +92,7 @@ printf "\n"
 printf "\n"
 /sbin/ip a
 printf "\n"
-/sbin/ifconfig
+/sbin/ifconfig -a
 printf "\n"
 
 printf "\n"
