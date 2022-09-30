@@ -3,7 +3,7 @@
 Originally from [HighOn.Coffee](https://highon.coffee)  
 Modified by Austin Pasquel
 
-The script performs linux enumeration to determine if the box was compromised.  
+The script performs linux enumeration for Blue Team Activities.
 
 Copy script to target and execute it: 
 
