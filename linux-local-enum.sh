@@ -535,5 +535,6 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "$reset"
 
 printf "\n More Linux enumeration commands can be found at: $blue https://highon.coffee/docs/linux-commands  \n"
+printf "$reset"
 # outputs to enum.log in current dir
 ) 2>&1 | /usr/bin/tee enum.log
