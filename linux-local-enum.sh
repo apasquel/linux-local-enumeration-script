@@ -13,8 +13,6 @@ sleep 1.2
 printf "\n"
 printf "\n"
 sleep 0.2
-
-# Logs output to enum.log
 (
 
 printf "$blue"
@@ -346,7 +344,8 @@ printf "$blue## $red SUID Owned by any user\n"
 printf "$blue"
 printf "##\n" 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
-printf "\n$reset"
+printf "\n"
+printf "$reset"
 
 /usr/bin/find / -perm -4000 -o -perm -2000 -print 2>/dev/null
 printf "\n"
@@ -359,7 +358,8 @@ printf "$blue## $red Files with no owner\n"
 printf "$blue"
 printf "##\n" 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
-printf "\n$reset"
+printf "\n"
+printf "$reset"
 
 /usr/bin/find / -nouser -print 2>/dev/null
 
@@ -371,7 +371,8 @@ printf "$blue## $red Files with no group\n"
 printf "$blue"
 printf "##\n" 
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
-printf "\n$reset"
+printf "\n"
+printf "$reset"
 
 /usr/bin/find / -nogroup -print 2>/dev/null
 
@@ -573,14 +574,103 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "\n"
 printf "$reset"
 
-ls /etc/init.d/
+/usr/bin/ls /etc/init.d/
 printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Bashrc Variables"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/cat /etc/bashrc
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Logs: Boot"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/tail -n 100 /var/log/boot.log
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Logs: Yum"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/tail -n 100 /var/log/yum.log
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Logs: Cron"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/tail -n 100 /var/log/cron
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
+printf "$blue## $red Logs: Secure"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/tail -n 100 /var/log/secure
+printf "\n"
+
 
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "$reset"
 
-printf "\n More Linux enumeration commands can be found at: $blue https://highon.coffee/docs/linux-commands  \n"
-printf "$reset"
 # outputs to enum.log in current dir
-) 2>&1 | /usr/bin/tee enum.log
+) 2>&1 | /usr/bin/tee $(hostname).log
