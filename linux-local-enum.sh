@@ -601,6 +601,24 @@ printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
 printf "##"
 printf "\n"
 printf "$red"
+printf "$blue## $red Log Listing"
+printf "\n"
+printf "$blue"
+printf "##"
+printf "\n"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "\n"
+printf "$reset"
+
+/usr/bin/ls -l /var/log
+printf "\n"
+
+printf "\n"
+printf "$blue"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
+printf "##"
+printf "\n"
+printf "$red"
 printf "$blue## $red Logs: Boot"
 printf "\n"
 printf "$blue"
@@ -666,7 +684,6 @@ printf "$reset"
 
 /usr/bin/tail -n 100 /var/log/secure
 printf "\n"
-
 
 printf "$blue"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '#'
